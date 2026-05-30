@@ -1,6 +1,6 @@
 ---
 name: skill-repo-readme
-description: Generate or refresh the README.md for a skill repository — one that vendors agentskills.io skills under `.agents/skills/<name>/SKILL.md`. Scans every skill's frontmatter, builds a skills table, and writes install instructions (`npx skills add` per skill plus a `curl | bash` one-shot) and a layout section. Use when the user asks to create, update, generate, or refresh the README for a skill repo, when a repo's README is a bare stub, or after adding/removing skills under `.agents/skills/`.
+description: Generate or refresh the README.md for a skill repository — one that vendors agentskills.io skills under `.agents/skills/<name>/SKILL.md`. Scans every skill's frontmatter, builds a skills table, and writes install instructions (`npx skills add` per skill plus a `curl | bash` one-shot) and a layout section. Trigger when the user runs or asks for `npx skill readme update`, or otherwise asks to create, update, generate, or refresh the README for a skill repo, when a repo's README is a bare stub, or after adding/removing skills under `.agents/skills/`. Only updates the README when the user explicitly asks — never regenerates it on its own.
 tier: org
 ---
 
@@ -17,9 +17,14 @@ the prose the script cannot infer.
 
 ## When to use
 
+- The user runs or asks for **`npx skill readme update`** — the canonical command to refresh this repo's README.
+- The user asks to "create / update / generate / refresh the README for a skill repo".
 - The repo's `README.md` is a bare stub (just a title) or missing.
 - Skills were added to / removed from `.agents/skills/` and the README is now stale.
-- The user asks to "create / update / generate / refresh the README for a skill repo".
+
+> **Only on request.** Update the README **only when the user explicitly asks** (via
+> `npx skill readme update` or an equivalent request). Do **not** regenerate it automatically
+> as a side effect of other work — a stale README is not, by itself, a reason to run this skill.
 
 ## What a good skill-repo README contains
 
